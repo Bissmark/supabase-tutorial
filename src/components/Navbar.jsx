@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { supabase } from "./supabaseClient";
 
 const Navbar = ({ session }) => {
+
+    // console.log(session)
     return (
         <div>
             <nav className="flex items-center justify-between flex-wrap bg-teal-500 p-6">

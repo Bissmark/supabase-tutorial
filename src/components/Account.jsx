@@ -33,16 +33,6 @@ export default function Account({ session }) {
         getProfile();
     }, [session]);
 
-    
-
-    useEffect(() => {
-        async function getBucket() {
-            let { data, error } = await supabase.storage.from('avatars').list();
-            console.log(data);
-        }
-        getBucket();
-    }, [])
-
     async function updateProfile(event) {
         event.preventDefault();
 

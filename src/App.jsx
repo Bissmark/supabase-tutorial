@@ -2,7 +2,6 @@ import { useState, useEffect } from "react"
 import { supabase } from "./components/supabaseClient"
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Register from "./components/Register";
-import Login from "./components/Login";
 import Account from "./components/Account";
 import Home from "./components/Home";
 import Auth from "./components/Auth";
@@ -13,12 +12,13 @@ function App() {
     const [session, setSession] = useState(null);
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-    })
+    // supabase.auth.getSession().then(({ data: { session } }) => {
+    //   setSession(session);
+    // })
 
     supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
+      console.log(session);
     })
   }, [])
 
@@ -29,7 +29,6 @@ function App() {
         <Routes>
           <Route path="/" element={ <Home />} />
           <Route path="/register" element={ <Register /> } />
-          <Route path="/login" element={ <Login />}/>
           <Route path="/account" element={!session ? (
             <Auth /> ) : (
               <Account key={session.user.id} session={session} />
